@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { prevHistory } from "./prevHistory";
 
 const App = () => {
-    const API_KEY = "AIzaSyAeSRChCXp6BUz8b79p4X34IX9uUzue_xg";
+    const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
     const genAI = new GoogleGenerativeAI(API_KEY);
 
     const [prevHistoryText, setPrevHistoryText] = useState("");
