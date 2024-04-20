@@ -90,6 +90,7 @@ const App = () => {
                     id="input"
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleInput()}
                 />
                 <button
                     type="button"
