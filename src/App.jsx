@@ -80,11 +80,11 @@ const App = () => {
     };
 
     return (
-        <div className="grid grid-cols-7 gap-4 py-8">
+        <div className="bg-customNeutral grid grid-cols-7 gap-3  py-8">
             <ChatsContainer history={history} />
-            <div className="sticky bottom-4 col-[3/-1] flex gap-4">
+            <div className="sticky bottom-4 col-[3/-1] flex gap-4 px-8">
                 <input
-                    className="flex-grow rounded border-2 border-purple-500 bg-slate-300 px-4 py-2 font-semibold text-purple-600"
+                    className="border-customLightGreen flex-grow rounded-2xl border-2 bg-white px-4 py-2 text-base font-semibold shadow-xl"
                     type="text"
                     name="input"
                     id="input"
@@ -93,7 +93,7 @@ const App = () => {
                 />
                 <button
                     type="button"
-                    className="rounded bg-purple-500 px-4 py-2 hover:bg-purple-600 active:bg-purple-300 "
+                    className="hover:bg-customLightGreen active:bg-customGreen rounded-2xl bg-white px-4 py-2 shadow-xl "
                     onClick={() => handleInput()}
                 >
                     Generate

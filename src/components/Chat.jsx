@@ -7,12 +7,15 @@ const Chat = ({ children, role }) => {
     //     return doc.body.innerHTML;
     // };
     return (
-        <div className="">
-            <div className="px-8 font-bold ">
+        <div className="relative grid gap-1">
+            <div className="bg-customGreen absolute left-0 top-0 grid aspect-square w-12 -translate-x-1/2 place-items-center rounded-2xl font-bold text-white">
+                {role === "user" ? "Y" : "C"}
+            </div>
+            <div className="px-8 font-semibold ">
                 {role === "user" ? "You" : "Response"}
             </div>
             <pre
-                className={`text-wrap rounded-2xl ${role === "user" ? "bg-white py-4" : "bg-[#d8ede9] py-8"} w-fit px-8 `}
+                className={`text-wrap rounded-2xl ${role === "user" ? "bg-white py-4" : " bg-customLightGreen py-8"} w-fit px-10 `}
                 // dangerouslySetInnerHTML={{__html: prevHistoryText,}}
                 dangerouslySetInnerHTML={{ __html: children }}
             >
