@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { FaStethoscope } from "react-icons/fa6";
 
 const Chat = ({ children, role }) => {
     // const htmlParser = (text) => {
@@ -8,8 +9,8 @@ const Chat = ({ children, role }) => {
     // };
     return (
         <div className="relative grid gap-1">
-            <div className="bg-customGreen absolute left-0 top-0 grid aspect-square w-12 -translate-x-1/2 place-items-center rounded-2xl font-bold text-white">
-                {role === "user" ? "Y" : "C"}
+            <div className="absolute left-0 top-0 grid aspect-square w-12 -translate-x-1/2 place-items-center rounded-2xl bg-customGreen font-bold text-white">
+                {role === "user" ? "Y" : <FaStethoscope />}
             </div>
             <div className="px-8 font-semibold ">
                 {role === "user" ? "You" : "Response"}
