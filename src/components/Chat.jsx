@@ -13,7 +13,7 @@ const Chat = ({ children, role }) => {
                 {role === "user" ? "Y" : <FaStethoscope />}
             </div>
             <div className="px-8 font-semibold ">
-                {role === "user" ? "You" : "Response"}
+                {role === "user" ? "You" : "Doc"}
             </div>
             <pre
                 className={`text-wrap rounded-2xl ${role === "user" ? "bg-white py-4" : " bg-customLightGreen py-8"} w-fit px-10 `}
