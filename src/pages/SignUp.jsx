@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
+
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
