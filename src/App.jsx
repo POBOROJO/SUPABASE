@@ -3,6 +3,9 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { prevHistory } from "./prevHistory";
 
 import { ChatsContainer } from "./components";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 const App = () => {
     const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
@@ -113,6 +116,13 @@ const App = () => {
     };
 
     return (
+        // <BrowserRouter>
+        // <Routes>
+        //     <Route path="/" element={<SignIn/>}/>
+        //     <Route path="/signup" element={<SignUp/>}/>
+        // </Routes>
+        // </BrowserRouter>
+        
         <div className="grid grid-cols-7 gap-3 bg-customNeutral  py-8">
             <ChatsContainer history={history} />
             <div className="sticky bottom-4 col-[3/-1] flex gap-4 px-8">
