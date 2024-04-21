@@ -1,4 +1,4 @@
-import { FaImage } from "react-icons/fa6";
+import { FaImage, FaRegTrashCan } from "react-icons/fa6";
 
 const ChatBar = ({
     prompt,
@@ -6,15 +6,22 @@ const ChatBar = ({
     handleInput,
     handleFileInput,
     image,
+    setImage,
 }) => {
     return (
         <div className="sticky bottom-4 col-[3/-1] grid gap-4 px-8">
             {image && (
-                <img
-                    src={image}
-                    alt="image"
-                    className="aspect-square h-20 rounded-2xl bg-white object-cover p-2"
-                />
+                <div className="relative w-fit">
+                    <img
+                        src={image}
+                        alt="image"
+                        className="aspect-square h-20 rounded-2xl bg-white object-cover p-2"
+                    />
+                    <FaRegTrashCan
+                        className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2 cursor-pointer text-red-500"
+                        onClick={() => setImage("")}
+                    />
+                </div>
             )}
 
             <div className="flex flex-grow items-center gap-4">

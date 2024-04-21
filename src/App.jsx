@@ -163,6 +163,7 @@ const App = () => {
                 handleInput={handleInput}
                 handleFileInput={handleFileInput}
                 image={image}
+                setImage={setImage}
             />
         </div>
     );
