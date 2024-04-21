@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { prevHistory } from "./prevHistory";
 
-import { ChatsContainer } from "./components";
+import { ChatsContainer, ChatBar } from "./components";
 
 const App = () => {
     const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
@@ -33,26 +33,13 @@ const App = () => {
         });
     };
 
-    const generateImageParts = (image) => {
-        return {
-            inlineData: {
-                data: Buffer.from(fs.readFileSync(image)).toString("base64"),
-                mimeType: `image/${image.split(".")[2]}`,
-            },
-        };
-    };
-
     const textAndImagePromptRun = async () => {
         const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
-        // const prompt = "What is the difference between the two images?";
         const images = [inlineImageData];
-        console.log(prompt);
-        console.log(images);
 
         setIsLoading(true);
         const result = await model.generateContent([prompt, ...images]);
         const response = await result.response;
-        console.log(history);
         setIsLoading(false);
 
         setHistory((prevHistory) => [
@@ -73,7 +60,6 @@ const App = () => {
         setIsLoading(true);
         const result = await chat.sendMessage(prompt);
         const response = await result.response;
-        console.log(history);
         setIsLoading(false);
 
         setHistory((prevHistory) => [
@@ -89,14 +75,10 @@ const App = () => {
             ...prevHistory,
             { role: "user", parts: [{ text: prompt }] },
         ]);
-        // setText((prevText) => prevText + prompt + "\n");
 
         if (image) console.log("image is set");
         image ? textAndImagePromptRun() : getResponse();
 
-        // getResponse();
-        console.log(image);
-        console.log(inlineImageData);
         setPrompt("");
         setImage("");
         setInlineImageData({});
@@ -120,45 +102,68 @@ const App = () => {
     return (
         <div className="grid grid-cols-7 gap-3 bg-customNeutral  py-8">
             <ChatsContainer history={history} isLoading={isLoading} />
-            <div className="sticky bottom-4 col-[3/-1] flex gap-4 px-8">
-                <input
-                    className="flex-grow rounded-2xl border-2 border-customLightGreen bg-white px-4 py-2 text-base font-semibold shadow-xl"
-                    type="text"
-                    name="input"
-                    id="input"
-                    value={prompt}
-                    onChange={(e) => setPrompt(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (!prompt) return;
-                        e.key === "Enter" && handleInput();
-                    }}
-                />
-                <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    accept="image/*"
-                    onChange={(e) => {
-                        console.log(e.target.files[0]);
-                        handleFileInput(e.target.files[0]);
-                    }}
-                />
-                <img
-                    src={image}
-                    alt="image"
-                    className="aspect-square h-8 object-cover"
-                />
-                <button
-                    type="button"
-                    className="rounded-2xl bg-white px-4 py-2 shadow-xl hover:bg-customLightGreen active:bg-customGreen "
-                    onClick={() => {
-                        if (!prompt) return;
-                        handleInput();
-                    }}
-                >
-                    Generate
-                </button>
-            </div>
+            {/* <div className="sticky bottom-4 col-[3/-1] grid gap-4 px-8">
+                {image && (
+                    <img
+                        src={image}
+                        alt="image"
+                        className="aspect-square h-20 rounded-2xl bg-white object-cover p-2"
+                    />
+                )}
+
+                <div className="flex flex-grow items-center gap-4">
+                    <div className=" relative flex flex-grow">
+                        <input
+                            className="flex-grow rounded-2xl  bg-white p-4 pr-16 text-base font-semibold shadow-xl focus:outline-0"
+                            type="text"
+                            name="input"
+                            id="input"
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (!prompt) return;
+                                e.key === "Enter" && handleInput();
+                            }}
+                        />
+                        <label
+                            htmlFor="image"
+                            className=" as absolute right-0 grid h-full place-items-center rounded-2xl bg-white px-4  hover:bg-customNeutral active:bg-customGreen"
+                        >
+                            <FaImage />
+                        </label>
+                    </div>
+
+                    <input
+                        type="file"
+                        name="image"
+                        id="image"
+                        accept="image/*"
+                        onChange={(e) => {
+                            console.log(e.target.files[0]);
+                            handleFileInput(e.target.files[0]);
+                        }}
+                        className=" hidden"
+                    />
+
+                    <button
+                        type="button"
+                        className="h-full rounded-2xl border-2 border-customLightGreen bg-white px-4 shadow-xl hover:bg-customLightGreen active:bg-customGreen "
+                        onClick={() => {
+                            if (!prompt) return;
+                            handleInput();
+                        }}
+                    >
+                        Generate
+                    </button>
+                </div>
+            </div> */}
+            <ChatBar
+                prompt={prompt}
+                setPrompt={setPrompt}
+                handleInput={handleInput}
+                handleFileInput={handleFileInput}
+                image={image}
+            />
         </div>
     );
 };
