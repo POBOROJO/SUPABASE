@@ -17,7 +17,7 @@ function fileToGenerativePart(path, mimeType) {
 async function run() {
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
-  const prompt = "WRITE PROMPT HERE";
+  const prompt = "Act as a funny teacher and answer my questions based on my inputs, and also make sure to give me an explanation if needed and be a bit and be funny with your response.";
 
   const imageParts = [fileToGenerativePart("image.png", "image/png")];
 
