@@ -1,4 +1,5 @@
 import { FaImage, FaRegTrashCan } from "react-icons/fa6";
+import { BiImageAdd } from "react-icons/bi";
 
 const ChatBar = ({
     prompt,
@@ -40,9 +41,9 @@ const ChatBar = ({
                     />
                     <label
                         htmlFor="image"
-                        className="absolute right-0 grid h-full place-items-center rounded-2xl bg-white px-4  hover:bg-customNeutral active:bg-customGreen"
+                        className="absolute right-0 grid h-full place-items-center rounded-2xl bg-white px-4  hover:text-customGreen active:bg-customGreen active:text-white"
                     >
-                        <FaImage />
+                        <BiImageAdd size={24} />
                     </label>
                 </div>
 
@@ -60,7 +61,7 @@ const ChatBar = ({
 
                 <button
                     type="button"
-                    className="h-full rounded-2xl border-2 border-customLightGreen bg-white px-4 shadow-xl hover:bg-customLightGreen active:bg-customGreen "
+                    className="h-full rounded-2xl bg-white px-4 shadow-xl hover:text-customGreen active:bg-customGreen active:text-white "
                     onClick={() => {
                         if (!prompt) return;
                         handleInput();

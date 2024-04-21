@@ -1,3 +1,6 @@
-import Home from "./Home";
 import SharedLayout from "./SharedLayout";
-export { Home, SharedLayout };
+import Home from "./Home";
+import SignUp from "./SignUp";
+import SignOut from "./SignOut";
+import SignIn from "./SignIn";
+export { Home, SharedLayout, SignUp, SignOut, SignIn };
