@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Chat } from "./";
 
-const ChatsContainer = ({ history }) => {
+const ChatsContainer = ({ history, isLoading }) => {
     const textFormatter = (text) => {
         return text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
     };
@@ -17,6 +17,7 @@ const ChatsContainer = ({ history }) => {
                     </Chat>
                 );
             })}
+            {isLoading && <div className="loading-div " />}
         </div>
     );
 };

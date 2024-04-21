@@ -12,6 +12,7 @@ const App = () => {
     const [image, setImage] = useState("");
     const [inlineImageData, setInlineImageData] = useState({});
     const [history, setHistory] = useState(prevHistory);
+    const [isLoading, setIsLoading] = useState(false);
 
     const printResponseText = (text) => {
         const textArray = text.split(" ");
@@ -48,9 +49,11 @@ const App = () => {
         console.log(prompt);
         console.log(images);
 
+        setIsLoading(true);
         const result = await model.generateContent([prompt, ...images]);
         const response = await result.response;
         console.log(history);
+        setIsLoading(false);
 
         setHistory((prevHistory) => [
             ...prevHistory,
@@ -67,9 +70,11 @@ const App = () => {
             history: history,
         });
 
+        setIsLoading(true);
         const result = await chat.sendMessage(prompt);
         const response = await result.response;
         console.log(history);
+        setIsLoading(false);
 
         setHistory((prevHistory) => [
             ...prevHistory,
@@ -114,7 +119,7 @@ const App = () => {
 
     return (
         <div className="grid grid-cols-7 gap-3 bg-customNeutral  py-8">
-            <ChatsContainer history={history} />
+            <ChatsContainer history={history} isLoading={isLoading} />
             <div className="sticky bottom-4 col-[3/-1] flex gap-4 px-8">
                 <input
                     className="flex-grow rounded-2xl border-2 border-customLightGreen bg-white px-4 py-2 text-base font-semibold shadow-xl"
