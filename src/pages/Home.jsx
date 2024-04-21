@@ -100,7 +100,7 @@ const Home = () => {
     };
 
     return (
-        <div className="grid grid-cols-7 gap-3 bg-customNeutral  py-8">
+        <>
             <ChatsContainer history={history} isLoading={isLoading} />
             <ChatBar
                 prompt={prompt}
@@ -110,7 +110,7 @@ const Home = () => {
                 image={image}
                 setImage={setImage}
             />
-        </div>
+        </>
     );
 };
 

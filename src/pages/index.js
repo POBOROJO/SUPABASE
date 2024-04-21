@@ -1,2 +1,3 @@
 import Home from "./Home";
-export { Home };
+import SharedLayout from "./SharedLayout";
+export { Home, SharedLayout };
